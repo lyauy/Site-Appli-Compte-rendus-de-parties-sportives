@@ -13,24 +13,20 @@ class CreateCompterenduTable extends Migration
      */
     public function up()
     {
-        Schema::create('compterendu', function (Blueprint $table) {
+        Schema::create('compterendus', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('id_catégoriesports');
             $table->string('nomrencontre');
             $table->date('datematch');
             $table->string('lieu');
             $table->string('typerencontre');
             $table->string('niveau');
-            $table->string('club_équipe1');
-            $table->string('club_équipe2');
-            $table->string('coach_équipe1');
-            $table->string('coach_équipe2');
-            $table->string('joueurs_équipe1');
-            $table->string('joueurs_équipe2');
-            $table->binary('publicité');
+            $table->text('renseignement')->nullable($renseignement = true);
+            $table->binary('publicité')->nullable($publicité = true);
             $table->string('club_évalué')->nullable($club_évalué = true);
-            $table->text('Eval_technique')->nullable($Eval_technique = true);
-            $table->text('Eval_physique')->nullable($Eval_physique = true);
-            $table->text('Eval_fairplay')->nullable($Eval_fairplay = true);
+            $table->text('eval_technique')->nullable($eval_technique = true);
+            $table->text('eval_physique')->nullable($eval_physique = true);
+            $table->text('eval_fairplay')->nullable($eval_fairplay = true);
             $table->integer('note')->nullable($note = true);
             $table->timestamps();
         });
@@ -43,6 +39,6 @@ class CreateCompterenduTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compterendu');
+        Schema::dropIfExists('compterendus');
     }
 }

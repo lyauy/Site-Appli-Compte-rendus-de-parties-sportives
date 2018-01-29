@@ -13,7 +13,7 @@ class CreateCatégoriesportTable extends Migration
      */
     public function up()
     {
-        Schema::create('catégoriesport', function (Blueprint $table) {
+        Schema::create('catégoriesports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('libellésport');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateCatégoriesportTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catégoriesport');
+        Schema::dropIfExists('catégoriesports');
     }
 }

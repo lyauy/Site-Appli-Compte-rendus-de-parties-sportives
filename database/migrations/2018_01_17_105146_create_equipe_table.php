@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentaireTable extends Migration
+class CreateEquipeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCommentaireTable extends Migration
      */
     public function up()
     {
-        Schema::create('commentaires', function (Blueprint $table) {
+        Schema::create('équipes', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('commentaire');
+            $table->string('nomclub');
+            $table->string('nomdirecteur');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCommentaireTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commentaires');
+        Schema::dropIfExists('équipes');
     }
 }

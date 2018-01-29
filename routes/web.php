@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CompterenduController@index');
+
+
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('compterendu', 'CompterenduController');
+
+Route::get('/home', 'CompterenduController@index')->name('home');
+
