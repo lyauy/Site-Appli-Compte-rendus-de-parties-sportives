@@ -97,7 +97,71 @@
                         </select>
                     </div>
                     </br></br>
-               <i>Les champs munis d'une (*) sont obligatoires pour les joueurs certifiés.</i>
+                    <div class="form-group">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Club équipe 1</th>
+                                    <th>Club équipe 2 (adverse)</th>
+                                </tr>                        
+                            </thead>
+                            <tbody>
+                                <tr>  
+                                    @for ($i = 0;$i < 2;$i++)
+                                        <th>
+                                            <table>                                                                           
+                                                <tr class = "{!! $errors->has('nomclub[]') ? 'has-error' : '' !!}">
+                                                    {!! Form::text('nomclub[]', null, ['class' => 'form-control', 'placeholder' => 'Nom du club']) !!}
+                                                    {!! $errors->first('nomclub[]', '<small class="help-block">:message</small>') !!}
+                                                </tr>   
+                                                <tr class = "{!! $errors->has('nomdirecteur[]') ? 'has-error' : '' !!}">
+                                                    {!! Form::text('nomdirecteur[]', null, ['class' => 'form-control', 'placeholder' => 'Nom du directeur du club']) !!}
+                                                    {!! $errors->first('nomdirecteur[]', '<small class="help-block">:message</small>') !!}
+                                                </tr>
+                                            </table>
+                                        </th>                               
+                                    @endfor
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                </br>
+                    <div class="form-group">
+                        <table id="mydiv">                            
+                            <thead>
+                                <tr>
+                                    <th>Joueurs équipe 1</th>
+                                    <th>Joueurs équipe 2 (adverse)</th>
+                                </tr>                        
+                            </thead> 
+                        </br>                           
+                            <tbody>
+                                                                                  
+                                    <tr>
+                                    @for($k = 1;$k < 3;$k++)                                        
+                                        <th>                                            
+                                            <table>
+                                                <thead>
+                                                    <tr>Joueur 1</tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="form-group"><input type="text" name="nolicence[]" class="form-control" placeholder="Numéro de licence"/></tr>
+                                                    <tr class="form-group"><input type="text" name="fullname[]" class="form-control" placeholder="Nom et prénom"/></tr>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </th>                                         
+                                    @endfor                                                     
+                                    </tr>                                    
+                            </tbody>                                                      
+                        </table>
+                    <tr><th>
+                        <input type="button" class="btn btn-lg btn-primary add" value="+" onclick="createNew()">
+                        <!--<input type="button" class="btn btn-danger delete" value="x" onclick="deleteNew()">-->
+                    </th></tr>   
+                </div>
+            </br></br>
+                    <i>Les champs munis d'une (*) sont obligatoires pour les joueurs certifiés.</i>
                         </br></br></br>
                         <div class="form-group {!! $errors->has('club_évalué') ? 'has-error' : '' !!}">
                             Club évalué *

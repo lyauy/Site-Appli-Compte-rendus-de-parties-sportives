@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use Illuminate\Support\Facades\Input;
 
 use App\Compterendu;
 use App\Equipe;
@@ -18,28 +19,18 @@ class EquipeRepository
 
 
 	public function store()
-	{
+	{		
 		
-		$équipe = new $this->équipe;		
-		
-		$équipe->nomclub = Input::get('nomclub');
+		$input = Input::all();
+		$condition = $input['nomclub'];
 
-		$équipes = Input::get('équipe');
-		$nb_équipes = array();
-
-		foreach($équipes as $équipe)
+		foreach($condition as $key => $condition)
 		{
-			$nb_équipes[] = new Equipe(array(
-				'nomclub' => $équipe['nomclub'],
-				'nomdirecteur' => $équipe['nomdirecteur'],
-				'id_compterendus' => $équipe['compterendu'],
-			));
+			$équipe = new Equipe;
+			$équipe->nomclub = $input['nomclub'][$key];
+			$équipe->nomdirecteur = $input['nomdirecteur'][$key];
+			$équipe->save();
 		}
-
-		$équipe->save();
-		$équipe->équipes()->saveMany($nb_équipes);
-
-		return $équipe;
 	
 	}
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use Illuminate\Support\Facades\Input;
 
 use App\Compterendu;
 use App\Equipe;
@@ -21,27 +22,18 @@ class JoueurRepository
 
 	public function store()
 	{
-		$joueur = new $this->joueur;		
-		
-		$joueur->nolicence = Input::get('nolicence');
 
-		$joueurs = Input::get('joueur');
-		$nb_joueurs = array();
+		$input = Input::all();
+		$condition = $input['nolicence'];
 
-		foreach($joueurs as $joueur)
+		foreach($condition as $key => $condition)
 		{
-			$nb_joueurs[] = new Joueur(array(
-				'nolicence' => $joueur['nolicence'],
-				'fullname' => $joueur['fullname'],
-				'id_équipes' => $joueur['équipe'],
-				'id_compterendus' => $joueur['compterendu'],
-			));
+			$joueur = new Joueur;
+			$joueur->nolicence = $input['nolicence'][$key];
+			$joueur->fullname = $input['fullname'][$key];
+			$joueur->save();
 		}
-
-		$joueur->save();
-		$joueur->joueurs()->saveMany($nb_joueurs);
-
-		return $joueur;
+	
 	}
 
 	public function getById($id)

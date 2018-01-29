@@ -24,8 +24,8 @@ class EquipeCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nomclub' =>'required|max:255|unique:équipes',
-            'nomdirecteur' =>'required|max:255|unique:équipes',            
+            'nomclub' =>'required|max:255',
+            'nomdirecteur' =>'required|max:255',            
         ];
     }
 }
