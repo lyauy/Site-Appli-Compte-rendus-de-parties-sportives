@@ -12,18 +12,13 @@ class Joueur extends Model
 
             'nolicence',
             'fullname',
-            'id_compterendus',
-            'id_équipes'
+            'id_compterendus'
 
     ];
 
     public function compterendu()
     {
-      return $this->belongsTo(\App\Compterendu::class);
+      return $this->belongsTo(\App\Compterendu::class, 'id_compterendus', 'id');
     }
 
-    public function équipe()
-    {
-      return $this->belongsTo(\App\Equipe::class);
-    }
 }

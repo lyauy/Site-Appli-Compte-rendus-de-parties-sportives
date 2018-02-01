@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compterendu extends Model
 {
+    public $table = "compterendus";
+
     protected $fillable = [
         'nomrencontre', 
         'datematch', 
         'lieu',
         'typerencontre',
 		'niveau',
+        'nomclub1',
+        'nomclub2',
         'renseignement',
 	    'publicité',
 		'club_évalué',
@@ -25,17 +29,12 @@ class Compterendu extends Model
 
     public function users() 
     {
-        return $this->belongsTo(App\User::class);
-    }
-
-    public function équipes() 
-    {
-        return $this->hasMany(App\Equipe::class);
+        return $this->belongsTo(App\User::class, 'id_users', 'id');
     }
 
     public function joueurs() 
     {
-        return $this->hasMany(App\Joueur::class);
+        return $this->hasMany(App\Joueur::class, 'id_compterendus', 'id');
     }
 
 }

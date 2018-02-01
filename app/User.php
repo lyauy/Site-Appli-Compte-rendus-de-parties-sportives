@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     public function compterendu()
     {
-        return $this->hasMany(App\Compterendu::class);
+        return $this->hasMany(App\Compterendu::class, 'id_users', 'id');
     }
 }

@@ -14,30 +14,25 @@ class AddFkTable extends Migration
     public function up()
     {
         Schema::table('compterendus', function (Blueprint $table) {
-            $table->integer('id_users')->nullable()->unsigned();
+            $table->integer('id_users')->unsigned()->nullable();
             //$table->integer('id_catégoriesports')->nullable()->unsigned();
             $table->foreign('id_users')->references('id')->on('users');
             //$table->foreign('id_catégoriesports')->references('id')->on('catégoriesports');
         });
 
-        Schema::table('commentaires', function (Blueprint $table) {
-            $table->integer('id_users')->nullable()->unsigned();
-            $table->integer('id_compterendus')->nullable()->unsigned();
+        Schema::table('comments', function (Blueprint $table) {
+            $table->integer('id_users')->unsigned()->nullable();
+            $table->integer('id_compterendus')->unsigned()->nullable();
             $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('id_compterendus')->references('id')->on('compterendus');
+            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::table('équipes', function (Blueprint $table) {
-            $table->integer('id_compterendus')->nullable()->unsigned();
-            $table->foreign('id_compterendus')->references('id')->on('compterendus');
-        });
 
         Schema::table('joueurs', function (Blueprint $table) {
-            $table->integer('id_équipes')->nullable()->unsigned();
-            $table->integer('id_compterendus')->nullable()->unsigned();
-            $table->foreign('id_équipes')->references('id')->on('équipes');
-            $table->foreign('id_compterendus')->references('id')->on('compterendus');
+            $table->integer('id_compterendus')->unsigned()->nullable();
+            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onUpdate('cascade')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -51,11 +46,7 @@ class AddFkTable extends Migration
             
         });
 
-        Schema::table('commentaires', function (Blueprint $table) {
-            
-        });
-
-        Schema::table('équipes', function (Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             
         });
 

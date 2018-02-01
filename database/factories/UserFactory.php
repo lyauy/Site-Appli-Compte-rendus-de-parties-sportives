@@ -21,3 +21,28 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(\App\Comment::class, function (\Faker\Generator $faker){
+
+	return [
+        'username' => $faker->userName,
+        'email' => $faker->email,
+		'content'=> $faker->sentence,
+		'ip' => $faker->ipv4,
+	];
+});
+
+$factory->define(\App\Compterendu::class, function (\Faker\Generator $faker){
+
+    return [
+        'id_catégoriesports' => 'Aikido',
+        'nomrencontre' => 'brocc lesnars vs bork laser',
+        'datematch' => $faker->date,
+        'lieu' => $faker->city,
+        'typerencontre' => 'compétitif',
+        'niveau' => 'international',
+        'nomclub1' => $faker->company,
+        'nomclub2' => $faker->company,
+
+    ];
+});

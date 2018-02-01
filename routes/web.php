@@ -14,7 +14,11 @@
 Route::get('/', 'CompterenduController@index');
 
 
+Route::group(['middleware' => ['web']], function() {
 
+	Route::resource('comments','CommentsController');
+
+});
 
 Auth::routes();
 

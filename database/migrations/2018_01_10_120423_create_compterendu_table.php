@@ -21,6 +21,8 @@ class CreateCompterenduTable extends Migration
             $table->string('lieu');
             $table->string('typerencontre');
             $table->string('niveau');
+            $table->string('nomclub1');
+            $table->string('nomclub2');
             $table->text('renseignement')->nullable($renseignement = true);
             $table->binary('publicité')->nullable($publicité = true);
             $table->string('club_évalué')->nullable($club_évalué = true);

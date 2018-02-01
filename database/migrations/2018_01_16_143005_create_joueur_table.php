@@ -15,8 +15,8 @@ class CreateJoueurTable extends Migration
     {
         Schema::create('joueurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nolicence');
-            $table->string('fullname');
+            $table->string('nolicence')->nullable();
+            $table->string('fullname')->nullable();
             $table->timestamps();
         });
     }

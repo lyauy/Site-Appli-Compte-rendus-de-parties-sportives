@@ -4,7 +4,6 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\Input;
 
 use App\Compterendu;
-use App\Equipe;
 use App\Joueur;
 
 class JoueurRepository
@@ -12,10 +11,9 @@ class JoueurRepository
 
     protected $joueur;
 
-    public function __construct(Compterendu $compterendu, Equipe $équipe, Joueur $joueur)
+    public function __construct(Compterendu $compterendu, Joueur $joueur)
 	{
 		$this->compterendu = $compterendu;
-		$this->équipe = $équipe;
 		$this->joueur = $joueur;
 	}
 
@@ -24,13 +22,15 @@ class JoueurRepository
 	{
 
 		$input = Input::all();
-		$condition = $input['nolicence'];
+		$condition = $input['fullname'];
 
 		foreach($condition as $key => $condition)
 		{
 			$joueur = new Joueur;
 			$joueur->nolicence = $input['nolicence'][$key];
 			$joueur->fullname = $input['fullname'][$key];
+			//$joueur->id_compterendus = $compterendu->id[$key];
+
 			$joueur->save();
 		}
 	

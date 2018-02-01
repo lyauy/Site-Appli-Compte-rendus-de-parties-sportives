@@ -4,40 +4,35 @@
 
 @section('contenu')
     @include('interfaces.header')
+
     <div class="col-sm-offset-4 col-sm-4">
     	<br>
 		<div class="panel panel-primary">	
 			<div class="panel-heading">[{{ $compterendu->id_catégoriesports }}] : {{ $compterendu->nomrencontre}} </div>
 			<div class="panel-body"> 
-				<table>
-					<thead>
+				<table class="table">
 						<tr>
 							<th>Lieu </th>
-							<th>Date </th>
+							<th>{{ $compterendu->lieu }} </th>
 						</tr>
-					</thead>
-					<tbody>
 						<tr>
-							<th>{{ $compterendu->lieu}} </th>
+							<th >Date </th>
 							<th>{{ $compterendu->datematch }}</th>
 						</tr>
-					</tbody>
 				</table>
-				<table>
-					<thead>
+			</br>
+				<table class="table">
 						<tr>
 							<th>Type de match </th>
-							<th>Niveau</th>
+							<th>{{ $compterendu->typerencontre}}</th>
 						</tr>
-					</thead>
-					<tbody>
 						<tr>
-							<th>{{ $compterendu->typerencontre}} </th>
+							<th>Niveau </th>
 							<th>{{ $compterendu->niveau }}</th>
 						</tr>
-					</tbody>
 				</table>
-				<table>
+			</br>
+				<table class="table">
 										
 						<tr> 
 							<th>Club évalué</th>
@@ -58,13 +53,15 @@
 						<tr>
 							<th>Note</th>
 							<th>{{ $compterendu->note }} </th>
-						</tr>
-						<tr>
-							<th>Renseignements complémentaires</th>
-							<th>{{ $compterendu->renseignements }} </th>
-						</tr>					
+						</tr>				
 				</table>
-
+			</br>
+				<table class="table">
+					<tr><th>Renseignements complémentaires</th></tr>
+					<tr><th>{{ $compterendu->renseignements }}</th></tr>				
+				</table>
+			</br>
+			</br>
 				@foreach ($users as $user)
                     @if($user->id == $compterendu->id_users)                           
                         <i> Compte rendu rédigé par {!! $user->name !!}</i>

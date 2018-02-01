@@ -24,8 +24,8 @@ class JoueurCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nolicence' =>'required|max:255',
-            'fullname' =>'required|max:255',
+            'nolicence' =>'max:255',
+            'fullname' =>'max:255',
         ];
     }
 }

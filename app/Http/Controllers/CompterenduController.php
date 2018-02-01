@@ -6,19 +6,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CompterenduCreateRequest;
 use App\Http\Requests\CompterenduUpdateRequest;
 
-use App\Http\Requests\EquipeCreateRequest;
-use App\Http\Requests\EquipeUpdateRequest;
-
 use App\Http\Requests\JoueurCreateRequest;
 use App\Http\Requests\JoueurUpdateRequest;
 
 use App\Repositories\CompterenduRepository;
-use App\Repositories\EquipeRepository;
 use App\Repositories\JoueurRepository;
 
 use App\User;
 use App\Catégoriesport;
-use App\Equipe;
 use App\Joueur;
 
 
@@ -32,10 +27,9 @@ class CompterenduController extends Controller
 
     protected $nbrPerPage = 15;
 
-    public function __construct(CompterenduRepository $compterenduRepository, EquipeRepository $equipeRepository, JoueurRepository $joueurRepository)
+    public function __construct(CompterenduRepository $compterenduRepository, JoueurRepository $joueurRepository)
     {
 		$this->compterenduRepository = $compterenduRepository;
-		$this->equipeRepository = $equipeRepository;
 		$this->joueurRepository = $joueurRepository;
 	}
 
@@ -72,11 +66,10 @@ class CompterenduController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function store(CompterenduCreateRequest $request1, EquipeCreateRequest $request2, JoueurCreateRequest $request3)
+	public function store(CompterenduCreateRequest $request1, JoueurCreateRequest $request2)
 	{
 		$compterendu = $this->compterenduRepository->store($request1->all());
-		$équipe = $this->equipeRepository->store($request2->all());
-		$joueur = $this->joueurRepository->store($request3->all());
+		$joueur = $this->joueurRepository->store($request2->all());
 
 		return redirect('home')->withOk("La feuille de match a été créée.");
 	}
@@ -91,10 +84,9 @@ class CompterenduController extends Controller
 	{
 		$compterendu = $this->compterenduRepository->getById($id);
 		$users = User::All();
-		$équipes = Equipe::All();
 		$joueurs = Joueur::All();
 
-		return view('compterendu.show',  compact('compterendu','users','équipes','joueurs'));
+		return view('compterendu.show',  compact('compterendu','users','joueurs'));
 	}
 
 	/**
@@ -106,10 +98,10 @@ class CompterenduController extends Controller
 	public function edit($id)
 	{
 		$compterendu = $this->compterenduRepository->getById($id);
-		$équipes = Equipe::All();
+
 		$joueurs = Joueur::All();
 
-		return view('compterendu.edit',  compact('compterendu','équipes','joueurs'));
+		return view('compterendu.edit',  compact('compterendu','joueurs'));
 	}
 
 	/**
@@ -118,11 +110,10 @@ class CompterenduController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CompterenduCreateRequest $request1, EquipeCreateRequest $request2, JoueurCreateRequest $request3)
+	public function update(CompterenduCreateRequest $request1, JoueurCreateRequest $request2)
 	{
 		$this->compterenduRepository->update($id, $request1->all());
-		$this->equipeRepository->update($id, $request2->all());
-		$this->joueurRepository->update($id, $request3->all());
+		$this->joueurRepository->update($id, $request2->all());
 		
 		return redirect('compterendu')->withOk("La feuille de match a été modifiée");
 	}

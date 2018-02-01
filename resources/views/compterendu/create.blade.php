@@ -3,10 +3,12 @@
 
 @section('contenu')
     @include('interfaces.header')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript">
 
-        var n=2;
+        var n=1;
         var mnl=2;
         var mfn=2;
         var max=25;
@@ -41,12 +43,7 @@
             
         }
 
-        function deleteNew() {
-            $('#mydiv').delegate('.delete', 'click', function () {
-            $(this).parent().parent().remove();
-            });
-            n--;
-        }
+        
     </script>
 
     <div class="col-sm-offset-4 col-sm-4">
@@ -107,25 +104,20 @@
                             </thead>
                             <tbody>
                                 <tr>  
-                                    @for ($i = 0;$i < 2;$i++)
-                                        <th>
-                                            <table>                                                                           
-                                                <tr class = "{!! $errors->has('nomclub[]') ? 'has-error' : '' !!}">
-                                                    {!! Form::text('nomclub[]', null, ['class' => 'form-control', 'placeholder' => 'Nom du club']) !!}
-                                                    {!! $errors->first('nomclub[]', '<small class="help-block">:message</small>') !!}
-                                                </tr>   
-                                                <tr class = "{!! $errors->has('nomdirecteur[]') ? 'has-error' : '' !!}">
-                                                    {!! Form::text('nomdirecteur[]', null, ['class' => 'form-control', 'placeholder' => 'Nom du directeur du club']) !!}
-                                                    {!! $errors->first('nomdirecteur[]', '<small class="help-block">:message</small>') !!}
-                                                </tr>
-                                            </table>
-                                        </th>                               
-                                    @endfor
+                                    <th class = "{!! $errors->has('nomclub1') ? 'has-error' : '' !!}">                                        
+                                        {!! Form::text('nomclub1', null, ['class' => 'form-control', 'placeholder' => 'Nom du club']) !!}
+                                        {!! $errors->first('nomclub1', '<small class="help-block">:message</small>') !!}                                            
+                                    </th>    
+                                    <th class = "{!! $errors->has('nomclub2') ? 'has-error' : '' !!}">                                        
+                                        {!! Form::text('nomclub2', null, ['class' => 'form-control', 'placeholder' => 'Nom du club']) !!}
+                                        {!! $errors->first('nomclub2', '<small class="help-block">:message</small>') !!}                                            
+                                    </th>                             
                                 </tr> 
                             </tbody>
                         </table>
                     </div>
                 </br>
+                <div class="form2">
                     <div class="form-group">
                         <table id="mydiv">                            
                             <thead>
@@ -135,32 +127,29 @@
                                 </tr>                        
                             </thead> 
                         </br>                           
-                            <tbody>
-                                                                                  
-                                    <tr>
-                                    @for($k = 1;$k < 3;$k++)                                        
-                                        <th>                                            
-                                            <table>
-                                                <thead>
-                                                    <tr>Joueur 1</tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="form-group"><input type="text" name="nolicence[]" class="form-control" placeholder="Numéro de licence"/></tr>
-                                                    <tr class="form-group"><input type="text" name="fullname[]" class="form-control" placeholder="Nom et prénom"/></tr>
-                                                </tbody>
-                                            </table>
-                                            
-                                        </th>                                         
-                                    @endfor                                                     
-                                    </tr>                                    
+                            <tbody>                                                                                 
+                                <tr>
+                                @for($k = 1;$k < 3;$k++)                                        
+                                    <th>                                            
+                                        <table>
+                                            <thead>
+                                                <tr>Joueur 1</tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="form-group"><input type="text" name="nolicence[]" class="form-control" placeholder="Numéro de licence"/></tr>
+                                                <tr class="form-group"><input type="text" name="fullname[]" class="form-control" placeholder="Nom et prénom"/></tr>
+                                            </tbody>
+                                        </table>                                        
+                                    </th>                                         
+                                @endfor                                                     
+                                </tr>                                    
                             </tbody>                                                      
-                        </table>
-                    <tr><th>
-                        <input type="button" class="btn btn-lg btn-primary add" value="+" onclick="createNew()">
-                        <!--<input type="button" class="btn btn-danger delete" value="x" onclick="deleteNew()">-->
-                    </th></tr>   
+                        </table>                   
+                        <input type="button" class="btn btn-lg btn-primary add" value="+" onclick="createNew()">                     
+                    </div>
                 </div>
             </br></br>
+                <div class="form3">
                     <i>Les champs munis d'une (*) sont obligatoires pour les joueurs certifiés.</i>
                         </br></br></br>
                         <div class="form-group {!! $errors->has('club_évalué') ? 'has-error' : '' !!}">
@@ -202,12 +191,15 @@
                          <input class="form-control" id="user" name="user" type="hidden" value="{{ $user->id }}">
                         
                     </div>
+                </div>
                     
                     {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
                     {!! Form::close() !!}
+
                 </div>
             </div>
         </div>
+
         <a href="javascript:history.back()" class="btn btn-primary">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>

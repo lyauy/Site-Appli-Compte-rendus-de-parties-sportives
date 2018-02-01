@@ -30,6 +30,8 @@ class CompterenduCreateRequest extends FormRequest
             'lieu' => 'required|max:5000',
             'typerencontre' => 'max:5000',
             'niveau' => 'max:5000',
+            'nomclub1' => 'required|max:255',
+            'nomclub2' => 'required|max:255',
             'renseignement' => 'max:5000',
             //'publicité' => 'unique:compterendus',
             'club_évalué' => 'max:5000',
