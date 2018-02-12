@@ -15,7 +15,7 @@ class CommentsController extends Controller
 
 
     public function index() {
-
+        sleep(2);
     	$comments = Comment::allFor(Input::get('type'), Input::get('id'));
     	return Response::json($comments, 200, [], JSON_NUMERIC_CHECK);
     }
