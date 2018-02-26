@@ -16,3 +16,7 @@ export const addComment = function (store, comment) {
 export const setCSRFToken = function (store, token) {
   store.dispatch('CSRF_TOKEN', token)
 }
+
+export const replyTo = function (store, id) {
+  store.dispatch('REPLY_TO', id)
+}

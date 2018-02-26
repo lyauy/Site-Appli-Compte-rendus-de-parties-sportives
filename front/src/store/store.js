@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export const state = {
   comments: [],
-  token: ''
+  token: '',
+  reply: 0
 }
 
 export const mutations = {
@@ -35,8 +36,10 @@ export const mutations = {
   },
   CSRF_TOKEN (state, token) {
     state.token = token
+  },
+  REPLY_TO (state, id) {
+    state.reply = id
   }
-
 }
 
 export default new Vuex.Store({
