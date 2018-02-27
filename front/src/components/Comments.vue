@@ -47,6 +47,7 @@ export default {
       }
     }
     window.addEventListener('scroll', onScroll)
+    onScroll()
   }
 }
 </script>

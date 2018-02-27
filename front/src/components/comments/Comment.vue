@@ -3,11 +3,11 @@
     <span class="ui inverted active dimmer" v-if="loading">
         <div class="ui text loader"></div>
     </span>
-    <div class="avatar"><img :src="'https://img.etsystatic.com/il/5e3fc7/1258695533/il_570xN.1258695533_9o6p.jpg' + comment.email_md5" alt=""></div>
+    <div class="avatar"><img :src="'http://gravatar.com/avatar' + comment.email_md5" alt=""></div>
     <div class="content">
       <span class="author" >{{ comment.username }}</span>
       <div class="metadata">
-        <span class="date">{{ comment.created_at }}</span>
+        <span class="date">{{ comment.created_at | ago }}</span>
         <span style="color: #ff0000" @click="deleteComment" v-if="can_delete"></span>
       </div>
       <div class="text">
@@ -16,10 +16,10 @@
       <div class="actions">
         <a href="#" @click.prevent="replyTo(reply_to)">Répondre</a>
       </div>
-    </div>
-    <div class="comment">
-      <comment :comment="reply" v-for="(reply, index) in comment.replies" :ip="ip" :key="index" transition="fade-from-right"></comment>
-      <comment-form :id="comment.commentable_id" :model="comment.commentable_type" :reply="comment.id" v-if="form_visible"></comment-form>
+      <div class="comment">
+        <transition-group name="fade-from-right"><comment :comment="reply" v-for="(reply, index) in comment.replies" :ip="ip" :key="index"></comment></transition-group>
+        <transition name="scroll"><comment-form :id="comment.commentable_id" :model="comment.commentable_type" :reply="comment.id" v-if="form_visible"></comment-form></transition>
+      </div>
     </div>
   </div>
 </template>
