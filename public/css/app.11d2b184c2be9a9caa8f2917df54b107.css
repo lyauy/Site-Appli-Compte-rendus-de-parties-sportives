@@ -1,0 +1,2 @@
+.fade-from-right-transition{opacity:1!important;transition:opacity 1.5s,-webkit-transform 3s!important;transition:opacity 1.5s,transform 3s!important;transition:opacity 1.5s,transform 3s,-webkit-transform 3s!important;-webkit-transform:translateX(0)!important;transform:translateX(0)!important}.fade-from-right-enter,.fade-from-right-leave{opacity:0!important;-webkit-transform:translateX(50px)!important;transform:translateX(50px)!important}
+/*# sourceMappingURL=app.11d2b184c2be9a9caa8f2917df54b107.css.map */

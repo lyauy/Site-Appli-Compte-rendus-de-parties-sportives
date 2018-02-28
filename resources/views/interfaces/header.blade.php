@@ -8,8 +8,6 @@
         <title>CRsport</title>
 
         <!-- Fonts -->
-        
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -66,15 +64,14 @@
         </style>
     </head>
     <body>
-      
-
-            <div class="content">
-                <div class="title m-b-md">
-                    CRsport
-                </div>
-                <div>
-                    Site de feuilles de match de sport, de tous niveaux
-                </div>
+        <div class="content">
+            <div class="title m-b-md">
+                CRsport
             </div>
-        
+            <div>
+                Site de feuilles de match de sport, de tous niveaux
+            </div>
+        </div>
     </body>
+    <!--<script src="js/app.1a60883c32d59d25efd8.js"></script>-->
+</html>

@@ -4,7 +4,6 @@
 
 @section('contenu')
     @include('interfaces.header')
-
     <div class="col-sm-offset-4 col-sm-4">
     	<br>
 		<div class="panel panel-primary">	
@@ -24,7 +23,7 @@
 				<table class="table">
 						<tr>
 							<th>Type de match </th>
-							<th>{{ $compterendu->typerencontre}}</th>
+							<th>{{ $compterendu->typerencontre }}</th>
 						</tr>
 						<tr>
 							<th>Niveau </th>
@@ -69,10 +68,14 @@
                 @endforeach
 				
 			</div>
-		</div>				
+		</div>
+		<comments model="Compterendu" :id="{{ $compterendu->id }}" csrf="{{ csrf_token() }}" ip="{{ md5(\Request::ip()) }}"></comments>
 		<a href="javascript:history.back()" class="btn btn-primary">
 			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
 		</a>
 	</div>
+	<script src="{{ asset('js/manifest.80cb101cda6f1738e34f.js') }}"></script>
+    <script src="{{ asset('js/vendor.d95421a8e105cddec3f0.js') }}"></script>
+    <script src="{{ asset('js/app.1a60883c32d59d25efd8.js') }}"></script>
 @endsection
 
