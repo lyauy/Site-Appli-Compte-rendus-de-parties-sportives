@@ -32,6 +32,33 @@
 				</table>
 			</br>
 				<table class="table">
+						<tr>
+							<th>Club en opposition</th>
+						</tr>
+						<tr>
+							<th>{{ $compterendu->nomclub1 }}</th>	
+							<th>{{ $compterendu->nomclub2 }}</th>
+						</tr>
+				</table>
+			</br>
+				<table class="table">
+					@php($i=1)
+						<tr>
+							<th>Joueurs </th>
+						</tr>		
+						<tr>
+						@foreach($joueurs as $joueur)
+							@php($limit=0)
+								@if($compterendu->id == $joueur->id_compterendus && $limit < 2)
+									<th>{{ $joueur->fullname }}</th>
+								@php($limit++)
+							@endif
+						@endforeach	
+						</tr>			
+						
+				</table>
+			</br>
+				<table class="table">
 										
 						<tr> 
 							<th>Club évalué</th>
@@ -68,8 +95,10 @@
                 @endforeach
 				
 			</div>
+			<div id="#app">
+				<comments model="Compterendu" :id="{{ $compterendu->id }}" csrf="{{ csrf_token() }}" ip="{{ md5(\Request::ip()) }}"></comments>
+			</div>
 		</div>
-		<comments model="Compterendu" :id="{{ $compterendu->id }}" csrf="{{ csrf_token() }}" ip="{{ md5(\Request::ip()) }}"></comments>
 		<a href="javascript:history.back()" class="btn btn-primary">
 			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
 		</a>

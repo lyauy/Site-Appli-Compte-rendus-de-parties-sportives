@@ -22,7 +22,10 @@ Route::group(['middleware' => ['web']], function() {
 
 Auth::routes();
 
+
 Route::resource('compterendu', 'CompterenduController');
+Route::resource('compterenduannexe', 'CompterenduannexeController');
+Route::resource('joueur', 'JoueurController');
 
 Route::get('/home', 'CompterenduController@index')->name('home');
 

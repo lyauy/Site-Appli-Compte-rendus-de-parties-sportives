@@ -29,7 +29,7 @@ class JoueurRepository
 			$joueur = new Joueur;
 			$joueur->nolicence = $input['nolicence'][$key];
 			$joueur->fullname = $input['fullname'][$key];
-			//$joueur->id_compterendus = $compterendu->id[$key];
+			$joueur->id_compterendus = $input['compterendu'][$key];
 
 			$joueur->save();
 		}

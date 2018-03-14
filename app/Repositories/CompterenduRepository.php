@@ -27,9 +27,14 @@ class CompterenduRepository
 		$compterendu->typerencontre = $inputs['typerencontre'];
 		$compterendu->niveau = $inputs['niveau'];
 		$compterendu->nomclub1 = $inputs['nomclub1'];
-		$compterendu->nomclub2 = $inputs['nomclub2'];
-		$compterendu->renseignement = $inputs['renseignement'];
+		$compterendu->nomclub2 = $inputs['nomclub2'];	
 
+		$compterendu->save();
+	}
+
+	private function save2(Compterendu $compterendu, Array $inputs)
+	{	
+		$compterendu->renseignement = $inputs['renseignement'];
 		$compterendu->club_évalué = $inputs['club_évalué'];	
 		$compterendu->eval_physique = $inputs['eval_physique'];
 		$compterendu->eval_technique = $inputs['eval_technique'];
@@ -38,7 +43,6 @@ class CompterenduRepository
 		//$compterendu->publicité = $inputs['publicité'];	
 				
 		$compterendu->id_users = $inputs['user'];
-
 
 		$compterendu->save();
 	}
@@ -53,9 +57,15 @@ class CompterenduRepository
 	public function store(Array $inputs)
 	{
 		$compterendu = new $this->compterendu;		
-		
-
 		$this->save($compterendu, $inputs);
+
+		return $compterendu;
+	}
+
+	public function store2(Array $inputs)
+	{
+		$compterendu = Compterendu::all()->last();	
+		$this->save2($compterendu, $inputs);
 
 		return $compterendu;
 	}

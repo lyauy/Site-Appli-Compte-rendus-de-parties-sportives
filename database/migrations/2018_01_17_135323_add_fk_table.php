@@ -24,13 +24,13 @@ class AddFkTable extends Migration
             $table->integer('id_users')->unsigned()->nullable();
             $table->integer('id_compterendus')->unsigned()->nullable();
             $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_compterendus')->references('id')->on('compterendus');
         });
 
 
         Schema::table('joueurs', function (Blueprint $table) {
             $table->integer('id_compterendus')->unsigned()->nullable();
-            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_compterendus')->references('id')->on('compterendus');
         });
 
     }
