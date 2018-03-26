@@ -64,8 +64,8 @@
             </div>
         </div>
 
-        <a href="javascript:history.back()" class="btn btn-primary">
+        <!--<a href="javascript:history.back()" class="btn btn-primary">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
+        </a>-->
      </div>
 @endsection

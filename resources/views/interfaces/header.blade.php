@@ -8,7 +8,13 @@
         <title>CRsport</title>
 
         <!-- Fonts -->
-
+        {!! Html::style('https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') !!}
+        {!! Html::style('https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css') !!}
+        <!--[if lt IE 9]>
+            {{ Html::style('https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js') }}
+            {{ Html::style('https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js') }}
+        <![endif]-->
+        <style> textarea { resize: none; } </style>
         <!-- Styles -->
         <style>
             html, body {
@@ -73,5 +79,4 @@
             </div>
         </div>
     </body>
-    <!--<script src="js/app.1a60883c32d59d25efd8.js"></script>-->
 </html>

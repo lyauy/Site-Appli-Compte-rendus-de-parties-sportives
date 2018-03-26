@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.1cccee13909063e5987ef09a5153beaa.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
 </head>
 <body>
@@ -19,7 +20,6 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle Navigation</span>
@@ -28,7 +28,6 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    
                     <a class="navbar-brand" href="{{ url('/') }}">
                         Home
                     </a>
@@ -71,11 +70,11 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+            @yield('content')
+        
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    
 </body>
 </html>

@@ -25,30 +25,28 @@
                         </thead>
                         <tbody>                       
                         @foreach ($compterendus as $compterendu)
-                                <tr>
-                                    <td>{!! $compterendu->id_catégoriesports !!}</td>
-                                    <td>{!! $compterendu->nomrencontre !!}</td>
-                                    <td class="text-primary"><strong>
-                                        @foreach ($users as $user)
-                                            @if($user->id == $compterendu->id_users)                           
-                                                {!! $user->name !!}
-                                            @endif
-                                        @endforeach
-                                    </strong></td>
-                                    <td>{!! $compterendu->datematch !!}</td>                                    
-                                    <td>{!! link_to_route('compterendu.show', 'Voir', [$compterendu->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-
-                                                    
-                                        <td>{!! link_to_route('compterendu.edit', 'Modifier', [$compterendu->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-                                        <td>
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['compterendu.destroy', $compterendu->id]]) !!}
-                                                {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Supprimer ce compte-rendu ?\')']) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    
-
-                                </tr>
-                            @endforeach                          
+                            <tr>
+                                <td>{!! $compterendu->id_catégoriesports !!}</td>
+                                <td>{!! $compterendu->nomrencontre !!}</td>
+                                <td class="text-primary"><strong>
+                                    @foreach ($users as $user)
+                                        @if($user->id == $compterendu->id_users)                           
+                                            {!! $user->name !!}
+                                        @endif
+                                    @endforeach
+                                </strong></td>
+                                <td>{!! $compterendu->datematch !!}</td>                                    
+                                <td>{!! link_to_route('compterendu.show', 'Voir', [$compterendu->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+                                @if ($auth->id == $compterendu->id_users)               
+                                    <td>{!! link_to_route('compterendu.edit', 'Modifier', [$compterendu->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['compterendu.destroy', $compterendu->id]]) !!}
+                                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Supprimer ce compte-rendu ?\')']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach                          
                     </tbody>
                 </table>
             </div>           

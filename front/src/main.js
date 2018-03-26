@@ -23,7 +23,7 @@ global.store = store
 /* eslint-disable no-new */
 new Vue({
 
-  el: '#app',
+  el: '#showcr',
   store,
   components: { Comments }
 

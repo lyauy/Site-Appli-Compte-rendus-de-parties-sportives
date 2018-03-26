@@ -42,10 +42,11 @@ class CompterenduController extends Controller
 	public function index()
 	{
 		$users = User::all();
+		$auth = Auth::User();
 		$compterendus = $this->compterenduRepository->getPaginate($this->nbrPerPage);
 		$links = $compterendus->render();
 
-		return view('compterendu.index', compact('compterendus', 'users', 'links'));
+		return view('compterendu.index', compact('compterendus', 'users', 'auth', 'links'));
 	}
 
 	/**
