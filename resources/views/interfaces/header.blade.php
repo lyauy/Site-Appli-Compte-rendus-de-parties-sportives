@@ -78,5 +78,6 @@
                 Site de feuilles de match de sport, de tous niveaux
             </div>
         </div>
+        @yield('contenu')
     </body>
 </html>

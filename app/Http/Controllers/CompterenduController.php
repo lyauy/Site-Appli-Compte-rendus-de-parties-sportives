@@ -12,6 +12,7 @@ use App\Http\Requests\JoueurUpdateRequest;
 use App\Repositories\CompterenduRepository;
 use App\Repositories\JoueurRepository;
 
+use App\Http\Controllers\CommentsController;
 use App\Compterendu;
 use App\User;
 use App\Catégoriesport;
@@ -28,9 +29,11 @@ class CompterenduController extends Controller
 
     protected $nbrPerPage = 15;
 
-    public function __construct(CompterenduRepository $compterenduRepository)
+    public function __construct(CompterenduRepository $compterenduRepository, JoueurRepository $joueurRepository, CompterenduController $CompterenduController )
     {
 		$this->compterenduRepository = $compterenduRepository;
+		$this->joueurRepository = $joueurRepository;
+		$this->CompterenduController = $CompterenduController;
 	}
 
     /**
@@ -100,10 +103,10 @@ class CompterenduController extends Controller
 	public function edit($id)
 	{
 		$compterendu = $this->compterenduRepository->getById($id);
-
+		$catégoriesports = Catégoriesport::all();
 		$joueurs = Joueur::All();
 
-		return view('compterendu.edit',  compact('compterendu','joueurs'));
+		return view('compterendu.edit',  compact('compterendu','joueurs', 'catégoriesports'));
 	}
 
 	/**
@@ -112,9 +115,9 @@ class CompterenduController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(CompterenduCreateRequest $request)
+	public function update(CompterenduCreateRequest $request, $id)
 	{
-		$this->compterenduRepository->update($id, $request1->all());
+		$this->compterenduRepository->update($id, $request->all());
 		
 		return redirect('compterendu')->withOk("La feuille de match a été modifiée");
 	}
@@ -128,7 +131,14 @@ class CompterenduController extends Controller
 	public function destroy($id)
 	{
 		$this->compterenduRepository->destroy($id);
-
+		foreach ($joueurs as $joueur){
+			if ($joueur->id_compterendu == $compterendu->id)
+				$this->joueurRepository->destroy($id);
+		}
+		foreach ($comments as $comment){
+			if ($comment->commentable_id == $compterendu->id)
+				$this->CommentsController->destroy($id);
+		}
 		return back();
 	}
 
