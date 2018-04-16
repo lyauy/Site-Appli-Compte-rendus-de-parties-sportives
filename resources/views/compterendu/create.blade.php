@@ -21,6 +21,9 @@
                                 <option label="">{!! $catégoriesport->libellésport !!}</option>
                             @endforeach
                         </select>
+                        <div class="form-group">
+                             <input class="form-control" id="user" name="user" type="hidden" value="{{ $user->id }}">                   
+                        </div>
                     </div>
                     <div class="form-group {!! $errors->has('nomrencontre') ? 'has-error' : '' !!}">
                         Rencontre

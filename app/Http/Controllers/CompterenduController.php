@@ -17,6 +17,7 @@ use App\Compterendu;
 use App\User;
 use App\Catégoriesport;
 use App\Joueur;
+use App\Comment;
 
 
 use Illuminate\Http\Request;
@@ -29,11 +30,11 @@ class CompterenduController extends Controller
 
     protected $nbrPerPage = 15;
 
-    public function __construct(CompterenduRepository $compterenduRepository, JoueurRepository $joueurRepository, CompterenduController $CompterenduController )
+    public function __construct(CompterenduRepository $compterenduRepository, JoueurRepository $joueurRepository, CommentsController $CommentsController)
     {
 		$this->compterenduRepository = $compterenduRepository;
 		$this->joueurRepository = $joueurRepository;
-		$this->CompterenduController = $CompterenduController;
+		$this->CommentsController = $CommentsController;
 	}
 
     /**
@@ -130,13 +131,15 @@ class CompterenduController extends Controller
 	 */
 	public function destroy($id)
 	{
+		$joueurs = Joueur::All();
+		$comments = Comment::All();
 		$this->compterenduRepository->destroy($id);
 		foreach ($joueurs as $joueur){
-			if ($joueur->id_compterendu == $compterendu->id)
+			if ($joueur->id_compterendu == $id)
 				$this->joueurRepository->destroy($id);
 		}
 		foreach ($comments as $comment){
-			if ($comment->commentable_id == $compterendu->id)
+			if ($comment->commentable_id == $id)
 				$this->CommentsController->destroy($id);
 		}
 		return back();

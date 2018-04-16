@@ -21,6 +21,7 @@ class CompterenduRepository
 	private function save(Compterendu $compterendu, Array $inputs)
 	{
 		$compterendu->id_catégoriesports = $inputs['catégoriesport'];
+		$compterendu->id_users = $inputs['user'];
 		$compterendu->nomrencontre= $inputs['nomrencontre'];
 		$compterendu->datematch = $inputs['datematch'];	
 		$compterendu->lieu = $inputs['lieu'];
@@ -42,7 +43,6 @@ class CompterenduRepository
 		$compterendu->note = $inputs['note'];	
 		//$compterendu->publicité = $inputs['publicité'];	
 				
-		$compterendu->id_users = $inputs['user'];
 
 		$compterendu->save();
 	}

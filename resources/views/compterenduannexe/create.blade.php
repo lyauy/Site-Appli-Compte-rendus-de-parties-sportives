@@ -54,9 +54,6 @@
                             {!! Form::textarea('renseignement', null, ['class' => 'form-control', 'placeholder' => 'Sanctions, blessés, prix en jeu, etc.']) !!}
                             {!! $errors->first('renseignement', '<small class="help-block">:message</small>') !!}
                         </div>
-                        <div class="form-group">
-                             <input class="form-control" id="user" name="user" type="hidden" value="{{ $user->id }}">                   
-                        </div>
                     </div>      
                         {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
                         {!! Form::close() !!}

@@ -16,21 +16,21 @@ class AddFkTable extends Migration
         Schema::table('compterendus', function (Blueprint $table) {
             $table->integer('id_users')->unsigned()->nullable();
             //$table->integer('id_catégoriesports')->nullable()->unsigned();
-            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             //$table->foreign('id_catégoriesports')->references('id')->on('catégoriesports');
         });
 
         Schema::table('comments', function (Blueprint $table) {
             $table->integer('id_users')->unsigned()->nullable();
             $table->integer('id_compterendus')->unsigned()->nullable();
-            $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('id_compterendus')->references('id')->on('compterendus');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onDelete('cascade');
         });
 
 
         Schema::table('joueurs', function (Blueprint $table) {
             $table->integer('id_compterendus')->unsigned()->nullable();
-            $table->foreign('id_compterendus')->references('id')->on('compterendus');
+            $table->foreign('id_compterendus')->references('id')->on('compterendus')->onDelete('cascade');
         });
 
     }
