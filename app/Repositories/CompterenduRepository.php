@@ -80,6 +80,11 @@ class CompterenduRepository
 		$this->save($this->getById($id), $inputs);
 	}
 
+	public function update2($id, Array $inputs)
+	{
+		$this->save2($this->getById($id), $inputs);
+	}
+
 	public function destroy($id)
 	{
 		$this->getById($id)->delete();

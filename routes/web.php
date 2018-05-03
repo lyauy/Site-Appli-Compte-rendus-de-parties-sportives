@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web']], function() {
 
 Auth::routes();
 
-
+Route::resource('user', 'UserController');
 Route::resource('compterendu', 'CompterenduController');
 Route::resource('compterenduannexe', 'CompterenduannexeController');
 Route::resource('joueur', 'JoueurController');

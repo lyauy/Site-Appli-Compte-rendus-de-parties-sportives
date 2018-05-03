@@ -46,11 +46,11 @@ class CompterenduController extends Controller
 	public function index()
 	{
 		$users = User::all();
-		$auth = Auth::User();
+		$authuser = isset(Auth::User()->id);
 		$compterendus = $this->compterenduRepository->getPaginate($this->nbrPerPage);
 		$links = $compterendus->render();
 
-		return view('compterendu.index', compact('compterendus', 'users', 'auth', 'links'));
+		return view('compterendu.index', compact('compterendus', 'users', 'authuser', 'links'));
 	}
 
 	/**
@@ -106,8 +106,9 @@ class CompterenduController extends Controller
 		$compterendu = $this->compterenduRepository->getById($id);
 		$catégoriesports = Catégoriesport::all();
 		$joueurs = Joueur::All();
+		$user = Auth::User();
 
-		return view('compterendu.edit',  compact('compterendu','joueurs', 'catégoriesports'));
+		return view('compterendu.edit',  compact('compterendu','joueurs', 'catégoriesports','user'));
 	}
 
 	/**
@@ -119,8 +120,10 @@ class CompterenduController extends Controller
 	public function update(CompterenduCreateRequest $request, $id)
 	{
 		$this->compterenduRepository->update($id, $request->all());
-		
-		return redirect('compterendu')->withOk("La feuille de match a été modifiée");
+		$joueurs = Joueur::All();
+		$compterendu = $this->compterenduRepository->getById($id);
+
+		return view('joueur.edit', compact('joueurs','compterendu'));
 	}
 
 	/**
@@ -140,9 +143,9 @@ class CompterenduController extends Controller
 		}
 		foreach ($comments as $comment){
 			if ($comment->commentable_id == $id)
-				$this->CommentsController->destroy($id);
+				$comment->delete();
 		}
-		return back();
+		return back()->withOk("Compte-rendu supprimé avec succès");
 	}
 
 }

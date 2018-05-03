@@ -37,7 +37,7 @@
                                 </strong></td>
                                 <td>{!! $compterendu->datematch !!}</td>                                    
                                 <td>{!! link_to_route('compterendu.show', 'Voir', [$compterendu->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                                @if ($auth->id == $compterendu->id_users)               
+                                @if ($authuser == $compterendu->id_users)               
                                     <td>{!! link_to_route('compterendu.edit', 'Modifier', [$compterendu->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['compterendu.destroy', $compterendu->id]]) !!}

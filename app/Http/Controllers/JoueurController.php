@@ -25,9 +25,10 @@ class JoueurController extends Controller
 
     protected $joueurRepository;
 
-    public function __construct(JoueurRepository $joueurRepository)
+    public function __construct(JoueurRepository $joueurRepository, CompterenduRepository $compterenduRepository)
     {
         $this->joueurRepository = $joueurRepository;
+        $this->compterenduRepository = $compterenduRepository;
     }
     /**
      * Display a listing of the resource.
@@ -86,7 +87,10 @@ class JoueurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $compterendu = $this->compterenduRepository->getById($id);
+        $joueurs = Joueur::All();
+
+        return view('joueur.edit',  compact('compterendu','joueurs'));
     }
 
     /**
@@ -96,9 +100,18 @@ class JoueurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JoueurCreateRequest $request, $id)
     {
-        $this->joueurRepository->update($id, $request->all());
+        foreach($request->id as $i->id){
+            $joueur->nolicence = $input['nolicence'][$i];
+            $joueur->fullname = $input['fullname'][$i];
+            $joueur->id_compterendus = $input['compterendu'][$i];
+
+            $joueur->save();
+        }
+        $compterendu = $this->compterenduRepository->getById($id);
+
+        return view('compterenduannexe.edit', compact('compterendu'));
     }
 
     /**

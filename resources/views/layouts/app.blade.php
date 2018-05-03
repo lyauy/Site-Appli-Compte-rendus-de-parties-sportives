@@ -50,9 +50,18 @@
                                 <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <ul class="dropdown-menu">-->
                                     <li>
+                                        {!! link_to_route('user.edit', 'Mon compte',  [$user->id], ['class' => 'btn btn-warning btn-block'])!!}
+                                    </li>
+                                    <li>
+                                        @if(Auth::User()->Droitsadmin == 1)
+                                            {!! link_to_route('user.index', 'Gestion des utilisateurs')!!}
+                                        @endif
+                                    </li>
+                                    <li>
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

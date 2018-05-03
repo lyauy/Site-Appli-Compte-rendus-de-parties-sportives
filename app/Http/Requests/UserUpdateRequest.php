@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use App\Joueur;
-
-class JoueurUpdateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +23,11 @@ class JoueurUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->joueur;
+        
+        $id = $this->user;
         return [
-            'nolicence' =>'required|max:255|unique:joueurs,nolicence'. $id,
-            'fullname' =>'required|max:255|unique:joueurs,fullname'. $id,
-            'id_compterendus' => 'unique:joueurs,id_compterendus'. $id,
+            'name' => 'required|max:255|unique:users,name,' . $id,
+            'email' => 'required|email|max:255|unique:users,email,' . $id
         ];
     }
 }

@@ -17,6 +17,14 @@ class JoueurRepository
 		$this->joueur = $joueur;
 	}
 
+	public function save_update()
+	{
+		$joueur->nolicence = $input['nolicence'];
+		$joueur->fullname = $input['fullname'];
+		$joueur->id_compterendus = $input['compterendu'];
+
+		$joueur->save();
+	}
 
 	public function store()
 	{
@@ -43,7 +51,12 @@ class JoueurRepository
 
 	public function update($id, Array $inputs)
 	{
-		$this->save($this->getById($id), $inputs);
+
+		foreach($id as $i => $id){
+			if($joueur->id_compterendus == $compterendu->id)
+				$this->save_update($this->getById($id), $inputs);
+		}
+
 	}
 
 	public function destroy($id)
