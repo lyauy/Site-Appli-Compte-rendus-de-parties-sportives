@@ -53,7 +53,7 @@
                                 
                                 <ul class="dropdown-menu">-->
                                     <li>
-                                        {!! link_to_route('user.edit', 'Mon compte',  [$user->id], ['class' => 'btn btn-warning btn-block'])!!}
+                                        {!! link_to_route('user.edit', 'Mon compte',  [Auth::User()->id], ['class' => 'btn btn-warning btn-block'])!!}
                                     </li>
                                     <li>
                                         @if(Auth::User()->Droitsadmin == 1)

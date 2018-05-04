@@ -11,10 +11,10 @@
 				<p>Email : {{ $user->email }}</p>
 				<p>Mot de Passe : {{ $user->password }}</p>
 				@if($user->Droitsadmin == 1)
-					Administrateur
+					<p>Administrateur</p>
 				@endif
 				@if($user->certified == 1)
-					Certifié
+					<p>Certifié : {{ $user->specification }}</p>
 				@endif
 
 			</div>

@@ -22,7 +22,7 @@
 					  	{!! $errors->first('password', '<small class="help-block">:message</small>') !!}
 					</div>
 					
-					@if ($user->Droitsadmin == 1)				
+					@if (Auth::User()->Droitsadmin == 1)				
 						<div class='form-group'>
 							<div class='checkbox'>
 								<label>
@@ -36,6 +36,9 @@
 									{!! Form::checkbox('certified', 1, null) !!} Utilisateur certifié
 								</label>
 							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::text('specification', null, ['class' => 'form-control', 'placeholder' => 'Spécification (de quel club/équipe vous venez?)']) !!}
 						</div>
 					@endif
 					

@@ -7,6 +7,9 @@ use App\Http\Requests\UserUpdateRequest;
 
 use App\Repositories\UserRepository;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -59,7 +62,10 @@ class UserController extends Controller
     {
         $this->userRepository->update($id, $request->all());
         
-        return redirect('user')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+        if(Auth::User()->Droitsadmin == 1)    
+            return redirect('user')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+        if(Auth::User()->Droitsadmin == 0)
+            return redirect('compterendu')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
     }
 
     public function destroy($id)

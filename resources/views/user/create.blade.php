@@ -38,6 +38,9 @@
 							</label>
 						</div>
 					</div>
+					<div class="form-group">
+						{!! Form::text('specification', null, ['class' => 'form-control', 'placeholder' => 'Spécification (de quel club/équipe vous venez?)']) !!}
+					</div>
 					{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				</div>

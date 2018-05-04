@@ -32,6 +32,9 @@
                                     @foreach ($users as $user)
                                         @if($user->id == $compterendu->id_users)                           
                                             {!! $user->name !!}
+                                            @if($user->certified == 1)
+                                                <img src="https://www.shareicon.net/data/128x128/2016/02/10/285144_emblem_32x32.png">
+                                            @endif
                                         @endif
                                     @endforeach
                                 </strong></td>

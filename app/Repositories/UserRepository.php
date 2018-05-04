@@ -18,8 +18,10 @@ class UserRepository
 	{
 		$user->name = $inputs['name'];
 		$user->email = $inputs['email'];	
-		$user->Droitsadmin = isset($inputs['Droitsadmin']);	
-		$user->password = $inputs['password'];
+		$user->Droitsadmin = isset($inputs['Droitsadmin']);
+		$user->certified = isset($inputs['certified']);	
+		$user->password = bcrypt($inputs['password']);
+		$user->specification = $inputs['specification'];
 
 		$user->save();
 	}
