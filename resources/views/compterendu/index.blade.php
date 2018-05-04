@@ -40,13 +40,15 @@
                                 </strong></td>
                                 <td>{!! $compterendu->datematch !!}</td>                                    
                                 <td>{!! link_to_route('compterendu.show', 'Voir', [$compterendu->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                                @if ($authuser == $compterendu->id_users)               
+                                @if (null !== Auth::User())
+                                @if (Auth::User()->id == $compterendu->id_users || Auth::User()->Droitsadmin == 1)               
                                     <td>{!! link_to_route('compterendu.edit', 'Modifier', [$compterendu->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['compterendu.destroy', $compterendu->id]]) !!}
                                             {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Supprimer ce compte-rendu ?\')']) !!}
                                         {!! Form::close() !!}
                                     </td>
+                                @endif
                                 @endif
                             </tr>
                         @endforeach                          
